@@ -52,4 +52,6 @@ gem 'coffee-script-source', '1.8.0'
 
 gem 'devise'
 
-gem 'bcrypt', platforms: :ruby
+gem 'bootstrap-sass', '~> 3.3', '>= 3.3.7'
+
+
