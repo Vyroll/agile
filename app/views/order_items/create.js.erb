@@ -1,7 +1,10 @@
 <% if @order.errors.any? || @order_item.errors.any? %>
-<%= [1, 2, 3, 4, 5].inspect %>
-alert("not valid.")
-<%= @order.errors.full_messages.first if @order.errors.any? %>
+
+
+    <% @order.errors.full_messages.each do |msg| %>
+      <% p msg %>
+    <% end %>
+
 <% else %>
   $(".cart-text").html("<%= escape_javascript(render 'layouts/cart_text') %>")
 <% end %>
