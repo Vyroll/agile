@@ -22,7 +22,7 @@
         </div>
         <h4 class="text-right">Total Price: <span style="color: green">
         <%=
-         # number_to_currency order_item.total_price
+          number_to_currency order_item.unit_price*order_item.quantity
           %>
 
         </span></h4>

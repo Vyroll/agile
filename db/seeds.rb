@@ -16,3 +16,8 @@ OrderStatus.create(name: 'In Progress')
 OrderStatus.create(name: 'Placed')
 OrderStatus.create(name: 'Shipped')
 OrderStatus.create(name: 'Cancelled')
+
+Shipping.delete_all
+Shipping.create(name: 'Not set', price: '10')
+Shipping.create(name: 'FedEx', price: '20')
+Shipping.create(name: 'InPost', price: '0')
