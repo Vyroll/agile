@@ -11,20 +11,11 @@
     </div>
   <% end %>
 
-  <div class="field">
-    <%= f.label :shipping_id %>
-    <%= f.text_field :shipping_id %>
-  </div>
 
-  <div class="field">
-    <%= f.label :status.name %>
-    <%= f.text_field :status.name %>
-  </div>
-
-  <div class="field">
-    <%= f.label :user.email %>
-    <%= f.text_field :user.email %>
-  </div>
+    <div class="field">
+      <%= f.label :order_status_id %>
+      <%= f.collection_select(:order_status_id, OrderStatus.all, :id, :name) %>
+    </div>
 
   <div class="actions">
     <%= f.submit %>
