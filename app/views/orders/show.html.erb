@@ -1,0 +1,40 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Shipping:</strong>
+  <%= @order.shipping.name %>
+</p>
+<p>
+  <strong>Status:</strong>
+  <%= @order.order_status.name%>
+</p>
+<p>
+  <strong></strong>
+  <%= %>
+</p>
+
+
+<table>
+  <thead>
+  <tr>
+    <th>Produkt</th>
+    <th>cena</th>
+    <th>ilosc</th>
+    <th>razem</th>
+  </tr>
+  </thead>
+
+  <tbody>
+  <% @order_items.each do |item| %>
+      <tr>
+        <td><%= item.product.name %></td>
+        <td><%= item.unit_price %></td>
+        <td><%= item.quantity %></td>
+        <td><%= item.unit_price*item.quantity %></td>
+      </tr>
+  <% end %>
+  </tbody>
+</table>
+
+<%= link_to 'Edit', edit_order_path(@order) %> |
+<%= link_to 'Back', orders_path %>

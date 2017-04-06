@@ -3,6 +3,12 @@ class OrderItemsController < ApplicationController
     @order = current_order
     @order_item = @order.order_items.new(order_item_params)
     @order.user_id = current_user.id
+
+    @order.country = 'Poland'
+    @order.city = 'Krakow'
+    @order.postal_code = '12-123'
+    @order.street = 'Zamkowa 3'
+
     @order.save
     session[:order_id] = @order.id
   end
