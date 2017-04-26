@@ -1,0 +1,15 @@
+<h2>User info:</h2>
+<p>
+  <strong>Id:</strong>
+  <%= @user.id %>
+</p>
+
+<h2>Orders:</h2>
+
+  <% @orders.each do |order| %>
+    <p>
+      <strong>Id</strong><%= order.id %>
+      <strong>City</strong><%= order.city %>
+      <%= link_to 'Show', order %>
+    </p>
+  <% end %>
