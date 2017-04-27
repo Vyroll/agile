@@ -3,9 +3,23 @@ class ProductsController < ApplicationController
   before_action :authenticate_admin!, except: [:index, :show]
   # GET /products
   # GET /products.json
+
   def index
-    @products = Product.all
-    @order_item = current_order.order_items.new
+
+    puts "==========="
+    puts params[:fl].inspect
+    puts params[:id].inspect
+    puts params[:name].inspect
+    puts params[:product][:fl].inspect
+    puts "==========="
+
+    if params[:product][:fl]
+      @products = Product.where(id: params[:product][:fl])
+    else
+      @products = Product.all
+    end
+
+    # @order_item = current_order.order_items.new
   end
 
   # GET /products/1
@@ -25,6 +39,7 @@ class ProductsController < ApplicationController
   # POST /products
   # POST /products.json
   def create
+
     @product = Product.new(product_params)
 
     respond_to do |format|
@@ -70,6 +85,6 @@ class ProductsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def product_params
-      params.require(:product).permit(:name, :description, :stock, :category_id, :price, :picture)
+      params.require(:product).permit(:name, :description, :stock, :category_id, :price, :picture, :platform, :fl)
     end
 end

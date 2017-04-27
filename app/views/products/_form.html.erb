@@ -32,6 +32,11 @@
   </div>
 
   <div class="field">
+    <%= f.label :platform_id %>
+    <%= f.collection_select(:platform_id, Platform.all, :id, :platform) %>
+  </div>
+
+  <div class="field">
     <%= f.label :price %>
     <%= f.number_field :price %>
   </div>
