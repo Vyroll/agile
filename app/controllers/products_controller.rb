@@ -5,21 +5,19 @@ class ProductsController < ApplicationController
   # GET /products.json
 
   def index
+    puts "======"
+    params[:product]
+    puts "======"
 
-    puts "==========="
-    puts params[:fl].inspect
-    puts params[:id].inspect
-    puts params[:name].inspect
-    puts params[:product][:fl].inspect
-    puts "==========="
 
-    if params[:product][:fl]
-      @products = Product.where(id: params[:product][:fl])
+
+    if params[:product]
+      @products = Product.where(category_id: params[:product][:fl])
     else
       @products = Product.all
     end
 
-    # @order_item = current_order.order_items.new
+    @order_item = current_order.order_items.new
   end
 
   # GET /products/1

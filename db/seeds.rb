@@ -23,11 +23,11 @@ Shipping.create(name: 'FedEx', price: '20')
 Shipping.create(name: 'InPost', price: '0')
 
 Category.delete_all
-Category.create(name: 'cat1')
-Category.create(name: 'cat2')
-Category.create(name: 'cat3')
+Category.create(name: 'action')
+Category.create(name: 'rpg')
+Category.create(name: 'rts')
 
-Product.delete_all
-Product.create(name: 'prod1', description: 'prod1prod1prod1prod1prod1prod1prod1prod1',stock: '11', category_id: '1', price: '11' )
-Product.create(name: 'prod2', description: 'prod2prod2prod2prod2prod2prod2prod2prod2',stock: '1', category_id: '2', price: '1' )
-Product.create(name: 'prod3', description: 'prod3prod3prod3prod3prod3prod3prod3prod3',stock: '12', category_id: '2', price: '123' )
+Platform.delete_all
+Platform.create(platform: 'PS4')
+Platform.create(platform: 'Xbone')
+Platform.create(platform: 'PcMasterRace')
