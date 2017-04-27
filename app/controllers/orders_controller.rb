@@ -10,6 +10,9 @@ class OrdersController < ApplicationController
   # GET /orders/1
   # GET /orders/1.json
   def show
+    puts "=========="
+    puts @order.user
+    puts "=========="
     @order_items = OrderItem.where(order_id: @order.id)
   end
 
@@ -41,6 +44,7 @@ class OrdersController < ApplicationController
   # PATCH/PUT /orders/1
   # PATCH/PUT /orders/1.json
   def update
+    StatusMailer.welcome_email(@order.user).deliver_now
     respond_to do |format|
       if @order.update(order_params)
         format.html { redirect_to @order, notice: 'Order was successfully updated.' }
