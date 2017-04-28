@@ -16,4 +16,15 @@
     <% @order_items.each do |order_item| %>
         <%= render 'carts/cart_row', product: order_item.product, order_item: order_item, show_total: true %>
     <% end %>
+
+
+    <%= form_tag orders_finalize_path do %>
+    <div class="input-group">
+    <div class="input-group-btn">
+    <%=	 hidden_field_tag :order_status_id, value:current_order.order_status.id %>
+    <%= submit_tag "Order", class: "btn btn-primary" %>
+    </div>
+    </div>
+    <% end %>
+
 <% end %>
