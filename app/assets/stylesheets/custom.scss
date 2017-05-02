@@ -1,0 +1,52 @@
+$accent: rgba(244,147,32,1);
+$s2: rgba(162,97,163,1);
+$navbar: rgba(167,188,207,1);
+$background: rgba(255,255,255,1);//rgba(189,225,225,1);
+$s5: rgba(227,106,89,1);
+$s6: rgba(12,128,65,1);
+$s7: rgba(245,172,202,1);
+$active: rgba(91,91,91,1);
+$font: rgba(0,0,0,1);
+
+$nav-height: 55px;
+
+
+.black{
+  color: black;
+}
+body{
+  padding-top: $nav-height + 60px;
+  background-color: $background;
+  min-height: 2000px;
+}
+.notification{
+  margin-top: 10px;
+}
+
+.navbar{
+  min-height: $nav-height;
+  background-color: $navbar;
+  .active{
+    background-color: $active;
+  }
+  border-bottom: $accent solid 2px;
+  ul{
+    li{
+      a{
+        color: $font;
+      }
+    }
+  }
+}
+
+.pic {
+  width: 100%;
+}
+
+.table-pic {
+  max-height: 100px;
+}
+
+.label-as-badge {
+  border-radius: 1em;
+}

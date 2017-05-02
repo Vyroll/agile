@@ -56,4 +56,6 @@ gem 'bootstrap-sass', '~> 3.3', '>= 3.3.7'
 
 gem 'carrierwave', '~> 1.0'
 
+gem 'font-awesome-rails'
+
 

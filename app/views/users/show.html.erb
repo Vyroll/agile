@@ -1,22 +1,64 @@
-<h2>User info:</h2>
-<p>
-  <strong>Id:</strong>
-  <%= @user.id %><br/>
+<div class="row">
+  <div class="col-md-12">
+    <h2>User info:</h2>
+    <dl class="dl-horizontal">
+      <dt>email</dt>
+      <dd><%= @user.email %></dd>
 
-  <strong>email:</strong>
-  <%= @user.email %><br/>
+      <dt>created_at</dt>
+      <dd><%= @user.created_at %></dd>
 
-  <strong>created_at:</strong>
-  <%= @user.created_at %>
+      <dt>Adrress</dt>
+      <dd><%= @user.Adress_id %></dd>
 
-</p>
+      <dt></dt>
+      <dd></dd>
 
-<h2>Orders:</h2>
+      <dt></dt>
+      <dd></dd>
 
-  <% @orders.each do |order| %>
-    <p>
-      <strong>Id</strong><%= order.id %>
-      <strong>City</strong><%= order.city %>
-      <%= link_to 'Show', order %>
-    </p>
-  <% end %>
+      <dt></dt>
+      <dd></dd>
+    </dl>
+  </div>
+</div>
+
+<div class="row">
+  <div class="col-md-12">
+    <h2>Orders:</h2>
+    <table class="table table-bordered table-condensed table-striped">
+      <thead>
+      <tr>
+        <th>Status</th>
+        <th>Dostawa</th>
+        <th>Stwożony</th>
+        <th>Edytowany</th>
+        <th>Adres</th>
+        <th>Narzędzia</th>
+      </tr>
+      </thead>
+
+      <tbody>
+      <% @orders.each do |order| %>
+          <tr>
+            <td><%= order.order_status.name %></td>
+            <td><%= order.shipping.name %></td>
+            <td><%= order.created_at %></td>
+            <td><%= order.updated_at %></td>
+            <td><%= order.country %>, <%= order.city %>, <%= order.postal_code %>, <%= order.street %> </td>
+            <td>
+              <ul class="list-inline">
+                <li>
+
+                  <%= link_to order do %>
+                      <%= fa_icon 'eye', style: 'color: black' %> Podgląd
+                  <% end %>
+                </li>
+              </ul>
+            </td>
+          </tr>
+      <% end %>
+      </tbody>
+    </table>
+  </div>
+</div>

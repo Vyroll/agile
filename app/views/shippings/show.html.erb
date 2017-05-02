@@ -1,14 +1,16 @@
-<p id="notice"><%= notice %></p>
+<div class="row">
+  <div class="col-md-12">
+    <p>
+    <strong>Nazwa:</strong>
+    <%= @shipping.name %>
+  </p>
 
-<p>
-  <strong>Name:</strong>
-  <%= @shipping.name %>
-</p>
+    <p>
+      <strong>Cena:</strong>
+      <%= @shipping.price %>
+    </p>
 
-<p>
-  <strong>Price:</strong>
-  <%= @shipping.price %>
-</p>
-
-<%= link_to 'Edit', edit_shipping_path(@shipping) %> |
-<%= link_to 'Back', shippings_path %>
+    <%= link_to 'Edytuj', edit_shipping_path(@shipping), class: 'btn btn-default' %> |
+    <%= link_to 'Wstecz', shippings_path, class: 'btn btn-default' %>
+  </div>
+</div>

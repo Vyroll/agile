@@ -1,27 +1,46 @@
-<p id="notice"><%= notice %></p>
+<div class="row">
+  <div class="col-md-12">
+    <h1>Platforms</h1>
 
-<h1>Platforms</h1>
-
-<table>
-  <thead>
-    <tr>
-      <th>Platform</th>
-      <th colspan="3"></th>
-    </tr>
-  </thead>
-
-  <tbody>
-    <% @platforms.each do |platform| %>
+    <table class="table table-bordered table-condensed table-striped">
+      <thead>
       <tr>
-        <td><%= platform.platform %></td>
-        <td><%= link_to 'Show', platform %></td>
-        <td><%= link_to 'Edit', edit_platform_path(platform) %></td>
-        <td><%= link_to 'Destroy', platform, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <th>Nazwa</th>
+        <th>Narzędzia</th>
       </tr>
+      </thead>
+
+      <tbody>
+      <% @platforms.each do |platform| %>
+        <tr>
+          <td><%= platform.platform %></td>
+          <td>
+            <ul class="list-inline">
+              <li>
+
+                <%= link_to platform do %>
+                    <%= fa_icon 'eye', style: 'color: black' %> Podgląd
+                <% end %>
+              </li>
+              <li>
+                <%= link_to edit_platform_path(platform) do %>
+                    <%= fa_icon 'pencil', style: 'color: black' %> Edycja
+                <% end %>
+              </li>
+              <li>
+                <%= link_to platform, method: :delete, data: {confirm: 'Jesteś pewien?'} do %>
+                    <%= fa_icon 'times', style: 'color: black' %> Usuń
+                <% end %>
+              </li>
+            </ul>
+          </td>
+        </tr>
+      <% end %>
+      </tbody>
+    </table>
+
+    <%= link_to new_platform_path, class: 'btn btn-default' do %>
+        <%= fa_icon('plus') %>  Nowa Platfoma
     <% end %>
-  </tbody>
-</table>
-
-<br>
-
-<%= link_to 'New Platform', new_platform_path %>
+  </div>
+</div>

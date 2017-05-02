@@ -1,1 +1,12 @@
-<%= link_to "#{current_order.order_items.size} Items in Cart", cart_path, class: "btn btn-link" %>
+<%= link_to cart_path, class: "btn btn-link" do %>
+
+    <span class="label label-as-badge
+      <% if current_order.order_items.size == 0 %>
+      label-default
+      <% else %>
+      label-success
+      <% end %>
+    ">
+    <%= "#{current_order.order_items.size}" %></span> Koszyk
+    <%= fa_icon('shopping-cart') %>
+<% end %>
