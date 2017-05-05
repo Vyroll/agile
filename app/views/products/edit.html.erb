@@ -1,6 +1,10 @@
-<h1>Editing Product</h1>
+<div class="row">
+  <div class="col-md-12">
+    <h1>Edytowanie Produktu</h1>
 
-<%= render 'form', product: @product %>
+    <%= render 'form', product: @product %>
 
-<%= link_to 'Show', @product %> |
-<%= link_to 'Back', products_path %>
+    <%= link_to 'Podgląd', @product, class: 'btn btn-default' %> |
+    <%= link_to 'Wstecz', products_path, class: 'btn btn-default' %>
+  </div>
+</div>

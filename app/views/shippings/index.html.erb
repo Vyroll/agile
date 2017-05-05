@@ -1,29 +1,51 @@
-<p id="notice"><%= notice %></p>
+<div class="row">
+  <div class="col-md-12">
+    <h1>Rodzaje Dostaw</h1>
 
-<h1>Shippings</h1>
-
-<table>
-  <thead>
-    <tr>
-      <th>Name</th>
-      <th>Price</th>
-      <th colspan="3"></th>
-    </tr>
-  </thead>
-
-  <tbody>
-    <% @shippings.each do |shipping| %>
+    <table class="table table-bordered table-condensed table-striped">
+      <thead>
       <tr>
-        <td><%= shipping.name %></td>
-        <td><%= shipping.price %></td>
-        <td><%= link_to 'Show', shipping %></td>
-        <td><%= link_to 'Edit', edit_shipping_path(shipping) %></td>
-        <td><%= link_to 'Destroy', shipping, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <th>Nazwa </th>
+        <th>Cena</th>
+        <th>Narzędzia</th>
       </tr>
+      </thead>
+
+      <tbody>
+      <% @shippings.each do |shipping| %>
+          <tr>
+            <td><%= shipping.name %></td>
+            <td><%= shipping.price %></td>
+
+            <td>
+              <ul class="list-inline">
+                <li>
+                  <%= link_to shipping do %>
+                      <%= fa_icon 'eye', style:'color: black' %> Podgląd
+                  <% end %>
+                </li>
+
+                <li>
+                  <%= link_to edit_shipping_path shipping do %>
+                      <%= fa_icon 'pencil', style:'color: black' %> Edycja
+                  <% end %>
+                </li>
+
+                <li>
+                  <%= link_to shipping, method: :delete, data: { confirm: 'Jesteś pewien?'} do %>
+                      <%= fa_icon 'times', style:'color: black' %> Usuń
+                  <% end %>
+                </li>
+              </ul>
+            </td>
+          </tr>
+      <% end %>
+      </tbody>
+    </table>
+
+    <%= link_to new_shipping_path, class:'btn btn-default' do %>
+        <%= fa_icon('plus') %>  Nowy Rodzaj Dostawy
     <% end %>
-  </tbody>
-</table>
 
-<br>
-
-<%= link_to 'New Shipping', new_shipping_path %>
+  </div>
+</div>

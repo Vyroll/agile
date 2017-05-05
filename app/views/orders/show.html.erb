@@ -1,40 +1,68 @@
-<p id="notice"><%= notice %></p>
-
-<p>
-  <strong>Shipping:</strong>
-  <%= @order.shipping.name %>
-</p>
-<p>
-  <strong>Status:</strong>
-  <%= @order.order_status.name%>
-</p>
-<p>
-  <strong></strong>
-  <%= %>
-</p>
-
-
-<table>
-  <thead>
-  <tr>
-    <th>Produkt</th>
-    <th>cena</th>
-    <th>ilosc</th>
-    <th>razem</th>
-  </tr>
-  </thead>
-
-  <tbody>
-  <% @order_items.each do |item| %>
+<div class="row">
+  <div class="col-md-12">
+    <table class="table table-bordered table-condensed table-striped">
+      <thead>
       <tr>
-        <td><%= item.product.name %></td>
-        <td><%= item.unit_price %></td>
-        <td><%= item.quantity %></td>
-        <td><%= item.unit_price*item.quantity %></td>
+        <th>Id</th>
+        <th>Użytkownik</th>
+        <th>Status</th>
+        <th>Dostawa</th>
+        <th>Stwożony</th>
+        <th>Edytowany</th>
+        <th>Adres</th>
       </tr>
-  <% end %>
-  </tbody>
-</table>
+      </thead>
+      <tbody>
+      <tr>
+        <td><%= @order.id %></td>
+        <td>(<%= @order.user.id %>)<%= @order.user.email %></td>
+        <td><%= @order.order_status.name %></td>
+        <td><%= @order.shipping.name %></td>
+        <td><%= @order.created_at %></td>
+        <td><%= @order.updated_at %></td>
+        <td><%= @order.country %>, <%= @order.city %>, <%= @order.postal_code %>, <%= @order.street %> </td>
+      </tr>
+      </tbody>
+    </table>
 
-<%= link_to 'Edit', edit_order_path(@order) %> |
-<%= link_to 'Back', orders_path %>
+    <table class="table table-bordered table-condensed table-striped">
+      <thead>
+      <tr>
+        <th>Produkt</th>
+        <th>Produkt</th>
+        <th>cena</th>
+        <th>ilosc</th>
+        <th>razem</th>
+      </tr>
+      </thead>
+      <tbody>
+      <% @order_items.each do |item| %>
+          <tr>
+            <td><%= item.product.name %></td>
+            <td>
+              <% if item.product.picture.url %>
+                  <%= image_tag(item.product.picture.url, class: 'table-pic') %>
+              <% end %>
+            </td>
+            <td><%= item.unit_price %></td>
+            <td><%= item.quantity %></td>
+            <td><%= item.unit_price*item.quantity %></td>
+          </tr>
+      <% end %>
+      </tbody>
+    </table>
+
+
+    <% if false %>
+        <%= link_to 'Edytuj', edit_order_path(@order), class: 'btn btn-default' %> |
+    <% end %>
+
+    <% if admin_signed_in? %>
+        <%= link_to 'Wstecz', orders_path, class: 'btn btn-default' %>
+    <% else %>
+        <%= link_to 'Wstecz', current_user, class: 'btn btn-default' %>
+    <% end %>
+  </div>
+</div>
+
+

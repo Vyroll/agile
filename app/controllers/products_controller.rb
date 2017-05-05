@@ -5,18 +5,12 @@ class ProductsController < ApplicationController
   # GET /products.json
 
   def index
-    puts "======"
-    params[:product]
-    puts "======"
-
-
-
     if params[:product]
       @products = Product.where(category_id: params[:product][:fl])
     else
       @products = Product.all
     end
-
+    
     @order_item = current_order.order_items.new
   end
 

@@ -1,9 +1,11 @@
-<p id="notice"><%= notice %></p>
+<div class="row">
+  <div class="col-md-12">
+    <p>
+    <strong>Nazwa:</strong>
+    <%= @platform.platform %>
+  </p>
 
-<p>
-  <strong>Platform:</strong>
-  <%= @platform.platform %>
-</p>
-
-<%= link_to 'Edit', edit_platform_path(@platform) %> |
-<%= link_to 'Back', platforms_path %>
+    <%= link_to 'Edytuj', edit_platform_path(@platform), class: 'btn btn-default' %> |
+    <%= link_to 'Wstecz', platforms_path, class: 'btn btn-default' %>
+  </div>
+</div>

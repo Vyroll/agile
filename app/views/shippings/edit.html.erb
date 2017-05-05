@@ -1,6 +1,11 @@
-<h1>Editing Shipping</h1>
+<div class="row">
+  <div class="col-md-12">
+    <h1>Edytowanie Rodzaj Dostawy</h1>
 
-<%= render 'form', shipping: @shipping %>
+    <%= render 'form', shipping: @shipping %>
 
-<%= link_to 'Show', @shipping %> |
-<%= link_to 'Back', shippings_path %>
+    <%= link_to 'Podgląd', @shipping, class: 'btn btn-default' %> |
+    <%= link_to 'Wstecz', shippings_path, class: 'btn btn-default' %>
+
+  </div>
+</div>

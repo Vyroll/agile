@@ -1,35 +1,27 @@
 Rails.application.routes.draw do
-  resources :platforms
-  get 'orders/index'
-
-  # get 'order_items/create'
-
-  # get 'order_items/update'
-
-  # get 'order_items/destroy'
-
-  # get 'carts/show'
-  resources :orders
-
-  resource :cart, only: [:show]
-  resources :order_items, only: [:create, :update, :destroy]
-
-  resources :shippings
-  devise_for :admins
-  devise_for :users
-  root to: "home#index"
-
-  resources :products
-  resources :categories
-
-  # resources :users
-  get 'users/show'
-  post 'products/index'
-
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 
+  root to: "home#index"
 
+  devise_for :admins
+  devise_for :users
 
+  resource :cart, only: [:show]
 
+  resources :categories
+
+  resources :order_items, only: [:create, :update, :destroy]
+
+  #get 'orders/index'
+  resources :orders
+
+  resources :platforms
+
+  get 'products/shop'
+  resources :products
+
+  resources :shippings
+
+  resources :users
 
 end
