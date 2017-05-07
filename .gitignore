@@ -22,4 +22,5 @@
 
 #ignore RubyMine files
 .idea/
-public/uploads/product/picture/
+public/uploads/product/
+public/uploads/tmp/

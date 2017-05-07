@@ -29,7 +29,7 @@ class OrdersController < ApplicationController
 
     respond_to do |format|
       if @order.save
-        format.html { redirect_to @order, notice: 'Order was successfully created.' }
+        format.html { redirect_to @order, notice: 'Dane zamówienia zostały edytowane.' }
         format.json { render :show, status: :created, location: @order }
       else
         format.html { render :new }
@@ -71,6 +71,6 @@ class OrdersController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def order_params
-      params.require(:order).permit(:shipping_id, :order_status_id)
+      params.require(:order).permit(:shipping_id, :order_status_id,:country,:city,:postal_code,:street)
     end
 end

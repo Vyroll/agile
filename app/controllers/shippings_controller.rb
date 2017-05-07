@@ -28,7 +28,7 @@ class ShippingsController < ApplicationController
 
     respond_to do |format|
       if @shipping.save
-        format.html { redirect_to @shipping, notice: 'Shipping was successfully created.' }
+        format.html { redirect_to @shipping, notice: 'Dane dostawy zostały edytowane.' }
         format.json { render :show, status: :created, location: @shipping }
       else
         format.html { render :new }

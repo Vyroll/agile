@@ -9,8 +9,8 @@ class Order < ApplicationRecord
 private
 
   def set_order_params
-    self.order_status_id = OrderStatus.find_by(name: 'In Progress').id
-    self.shipping_id = Shipping.find_by(name: 'Not set').id
+    self.order_status_id = OrderStatus.find_by(name: 'Stan tymczasowy').id
+    self.shipping_id = Shipping.find_by(name: 'Stan tymczasowy').id
   end
 
 end

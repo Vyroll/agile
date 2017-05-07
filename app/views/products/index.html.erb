@@ -27,12 +27,14 @@
                 <td><%= product.category.name %></td>
 
                 <td>
-                  <%# product.platform.platform %>
+                  <%= product.platform.name %>
                 </td>
 
                 <td><%= product.stock %></td>
                 <td><%= product.price %></td>
                 <td><%= image_tag(product.picture.url, class: 'table-pic') %></td>
+
+
                 <td>
                   <ul class="list-inline">
                     <li>

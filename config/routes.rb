@@ -22,6 +22,7 @@ Rails.application.routes.draw do
 
   resources :shippings
 
+  get 'users/:id/edit_address', to: 'users#edit_address', as: 'users_edit_address'
   resources :users
 
 end

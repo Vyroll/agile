@@ -12,15 +12,6 @@
 
 ActiveRecord::Schema.define(version: 20170427102800) do
 
-  create_table "addresses", force: :cascade do |t|
-    t.string   "country"
-    t.string   "city"
-    t.string   "postal_code"
-    t.string   "street"
-    t.datetime "created_at",  null: false
-    t.datetime "updated_at",  null: false
-  end
-
   create_table "admins", force: :cascade do |t|
     t.string   "email",                  default: "", null: false
     t.string   "encrypted_password",     default: "", null: false
@@ -65,19 +56,19 @@ ActiveRecord::Schema.define(version: 20170427102800) do
     t.integer  "shipping_id"
     t.integer  "order_status_id"
     t.integer  "user_id"
-    t.datetime "created_at",      null: false
-    t.datetime "updated_at",      null: false
     t.string   "country"
     t.string   "city"
     t.string   "postal_code"
     t.string   "street"
+    t.datetime "created_at",      null: false
+    t.datetime "updated_at",      null: false
     t.index ["order_status_id"], name: "index_orders_on_order_status_id"
     t.index ["shipping_id"], name: "index_orders_on_shipping_id"
     t.index ["user_id"], name: "index_orders_on_user_id"
   end
 
   create_table "platforms", force: :cascade do |t|
-    t.string   "platform"
+    t.string   "name"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -106,6 +97,10 @@ ActiveRecord::Schema.define(version: 20170427102800) do
   create_table "users", force: :cascade do |t|
     t.string   "email",                  default: "", null: false
     t.string   "encrypted_password",     default: "", null: false
+    t.string   "country"
+    t.string   "city"
+    t.string   "postal_code"
+    t.string   "street"
     t.string   "reset_password_token"
     t.datetime "reset_password_sent_at"
     t.datetime "remember_created_at"
@@ -116,8 +111,6 @@ ActiveRecord::Schema.define(version: 20170427102800) do
     t.string   "last_sign_in_ip"
     t.datetime "created_at",                          null: false
     t.datetime "updated_at",                          null: false
-    t.integer  "Adress_id"
-    t.index ["Adress_id"], name: "index_users_on_Adress_id"
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
