@@ -4,10 +4,10 @@ class OrderItemsController < ApplicationController
     @order_item = @order.order_items.new(order_item_params)
     @order.user_id = current_user.id
 
-    @order.country = 'Poland'
-    @order.city = 'Krakow'
-    @order.postal_code = '12-123'
-    @order.street = 'Zamkowa 3'
+     @order.country = current_user.country
+     @order.city = current_user.city
+     @order.postal_code = current_user.postal_code
+     @order.street = current_user.street
 
     @order.save
     session[:order_id] = @order.id
