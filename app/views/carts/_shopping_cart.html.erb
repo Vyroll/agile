@@ -18,13 +18,7 @@
     <% end %>
 
 
-    <%= form_tag orders_finalize_path do %>
-    <div class="input-group">
-    <div class="input-group-btn">
-    <%=	 hidden_field_tag :order_status_id, value:current_order.order_status.id %>
-    <%= submit_tag "Order", class: "btn btn-primary" %>
-    </div>
-    </div>
-    <% end %>
+    <%= link_to 'podsumowanie', carts_order_path, class: "btn btn-primary"  %>
+
 
 <% end %>

@@ -1,0 +1,43 @@
+<div class="row">
+  <div class="col-md-12 ">
+    <div class="disable_input">
+    <%= form_tag carts_finalize_path do %>
+        <div class="form-group ">
+          <%= check_box_tag 'form_dis' %>
+        </div>
+        <div class="form-group ">
+          <%= label_tag 'label', 'city',class: 'control-label' %>
+          <%= text_field_tag 'city', '', class: 'form-control' %>
+        </div>
+        <div class="form-group ">
+          <%= label_tag 'label', 'country',class: 'control-label' %>
+          <%= text_field_tag 'country', '', class: 'form-control' %>
+        </div>
+
+        <div class="form-group ">
+          <div class="form-group-btn">
+            <%=	hidden_field_tag :order_status_id, value:current_order.order_status.id %>
+            <%= submit_tag "Order", class: "btn btn-primary" %>
+          </div>
+        </div>
+    <% end %>
+    </div>
+  </div>
+</div>
+
+
+<script type="text/javascript" charset="utf-8">
+
+    $('#form_dis').on('click', function(){
+        if($(this).prop('checked')){
+            $('#city').attr('disabled', 'disabled');
+            $('#country').attr('disabled', 'disabled');
+
+        } else {
+            $('#city').removeAttr('disabled');
+            $('#country').removeAttr('disabled');
+
+        }
+    })
+
+</script>

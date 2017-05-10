@@ -43,7 +43,7 @@
 
           <% if user_signed_in? %>
             <li class="cart-text"><%= render 'layouts/cart_text' %></li>
-            <li><%= link_to('Profil', current_user) %></li>
+            <li class="<%= 'active' if params[:controller] == 'users'  %>"><%= link_to('Profil', current_user) %></li>
             <li><%= link_to('Wyloguj', destroy_user_session_path, :method => :delete) %></li>
           <% end %><!-- /user -->
 

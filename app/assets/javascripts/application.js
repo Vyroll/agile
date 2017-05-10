@@ -15,3 +15,14 @@
 //= require jquery_ujs
 //= require turbolinks
 //= require_tree .
+
+// $('#form_dis').change(function() {
+//     if ($('#form_dis').is(":checked")) {
+//         $('#city').attr('disabled', true);
+//     }
+//     else {
+//         $('#city').attr('disabled', false);
+//     }
+// });
+
+

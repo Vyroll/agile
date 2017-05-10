@@ -6,13 +6,14 @@ Rails.application.routes.draw do
   devise_for :admins
   devise_for :users
 
-  resource :cart, only: [:show]
+  get 'carts/order'
+  post 'carts/finalize'
+  resource :carts, only: [:show]
 
   resources :categories
 
   resources :order_items, only: [:create, :update, :destroy]
 
-  #get 'orders/index'
   resources :orders
 
   resources :platforms
