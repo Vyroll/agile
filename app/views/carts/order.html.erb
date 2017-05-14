@@ -1,43 +1,144 @@
 <div class="row">
   <div class="col-md-12 ">
-    <div class="disable_input">
-    <%= form_tag carts_finalize_path do %>
-        <div class="form-group ">
-          <%= check_box_tag 'form_dis' %>
-        </div>
-        <div class="form-group ">
-          <%= label_tag 'label', 'city',class: 'control-label' %>
-          <%= text_field_tag 'city', '', class: 'form-control' %>
-        </div>
-        <div class="form-group ">
-          <%= label_tag 'label', 'country',class: 'control-label' %>
-          <%= text_field_tag 'country', '', class: 'form-control' %>
-        </div>
+    <table class="table table-bordered table-condensed table-striped">
+      <thead>
+      <tr>
+        <th>Obraz</th>
+        <th>Nazwa</th>
+        <th>Opis</th>
+        <th>Kategoria</th>
+        <th>Platforma</th>
+        <th>Cena</th>
+        <th>Ilość</th>
+        <th>Łącznie</th>
+      </tr>
+      </thead>
+      <tbody>
+      <% x=0 %>
+      <% @order_items.each do |order_item| %>
+          <% x+=order_item.product.price*order_item.quantity %>
+        <tr>
+          <td><%= image_tag(order_item.product.picture.url, class: 'table-pic') %></td>
+          <td><%= order_item.product.name %></td>
+          <td><%= order_item.product.description %></td>
+          <td><%= order_item.product.category.name %></td>
+          <td>
+            <%= order_item.product.platform.name %>
+          </td>
+          <td><%= order_item.product.price %></td>
+          <td><%= order_item.quantity %></td>
+          <td><%= order_item.product.price*order_item.quantity %></td>
+        </tr>
+      <% end %>
+      </tbody>
+      <tfoot>
+      <tr>
+        <td colspan="7">
+          <p class="pull-right">Łącznie:</p>
+        </td>
+        <td>
+          <%= x %>
+        </td>
+      </tr>
+      <tr>
+        <td colspan="7">
+          <p class="pull-right">Przesyłka:</p>
+        </td>
+        <td>
+          <p id="shipping_price">
+            Wybierz rodzaj przesyłki
+          </p>
+        </td>
+      </tr>
+      <tr>
+        <td colspan="7">
+          <p class="pull-right">Z przesyłką:</p>
+        </td>
+        <td>
+          <p id="total_and_shipping">
+            Wybierz rodzaj przesyłki
+          </p>
+        </td>
+      </tr>
+      </tfoot>
 
-        <div class="form-group ">
-          <div class="form-group-btn">
-            <%=	hidden_field_tag :order_status_id, value:current_order.order_status.id %>
-            <%= submit_tag "Order", class: "btn btn-primary" %>
+    </table>
+  </div>
+</div>
+<div class="row">
+  <div class="col-md-12 ">
+    <% if signed_in? %>
+      <% if current_user.country.blank? or current_user.city.blank? or current_user.postal_code.blank? or current_user.street.blank? %>
+          uzupelnij adres - nie mozesz zamowic produktu - link do edycji adresu / albo formularz : ?
+      <% else %>
+        <%= form_tag carts_finalize_path do %>
+          <div class="form-group">
+            <%= label_tag 'label', 'zmień adres dostawy',class: 'control-label' %>
+            <%= check_box_tag 'form_dis' %>
           </div>
-        </div>
+          <div class="form-group">
+            <%= label_tag 'label', 'Kraj',class: 'control-label' %>
+            <%= text_field_tag 'order[country]', current_user.country, class: 'form-control', disabled: 'disabled' %>
+          </div>
+          <div class="form-group">
+            <%= label_tag 'label', 'Miasto',class: 'control-label' %>
+            <%= text_field_tag 'order[city]', current_user.city, class: 'form-control', disabled: 'disabled' %>
+          </div>
+          <div class="form-group">
+            <%= label_tag 'label', 'Kod pocztowy',class: 'control-label' %>
+            <%= text_field_tag 'order[postal_code]', current_user.postal_code, class: 'form-control', disabled: 'disabled'%>
+          </div>
+          <div class="form-group">
+            <%= label_tag 'label', 'Ulica',class: 'control-label' %>
+            <%= text_field_tag 'order[street]', current_user.street, class: 'form-control', disabled: 'disabled' %>
+          </div>
+          <div class="form-group">
+            <%= label_tag 'label', 'Wybierz metodę dostawy',class: 'control-label' %>
+            <%= collection_select :order,
+                                  :shipping_id,
+                                  Shipping.all.collect { |t| [ t.id, "#{t.name}(#{t.price} zł)" ] },
+                                  :first,
+                                  :last,
+                                  {},
+                                  {class: 'form-control'}
+            %>
+          </div>
+          <div class="form-group">
+            <div class="form-group-btn">
+              <%= submit_tag 'Zamów', class: 'btn btn-primary' %>
+            </div>
+          </div>
+        <% end %>
+      <% end %>
+    <% else %>
+      Musisz sie zalogowac
     <% end %>
-    </div>
   </div>
 </div>
 
+<script type="text/javascript" charset="utf-8">
+$('#form_dis').on('click', function(){
+  if($(this).prop('checked')){
+    $('#order_country').removeAttr('disabled');
+    $('#order_city').removeAttr('disabled');
+    $('#order_postal_code').removeAttr('disabled');
+    $('#order_street').removeAttr('disabled');
+  } else {
+    $('#order_country').attr('disabled', 'disabled');
+    $('#order_city').attr('disabled', 'disabled');
+    $('#order_postal_code').attr('disabled', 'disabled');
+    $('#order_street').attr('disabled', 'disabled');
+  }
+})
+</script>
 
 <script type="text/javascript" charset="utf-8">
-
-    $('#form_dis').on('click', function(){
-        if($(this).prop('checked')){
-            $('#city').attr('disabled', 'disabled');
-            $('#country').attr('disabled', 'disabled');
-
-        } else {
-            $('#city').removeAttr('disabled');
-            $('#country').removeAttr('disabled');
-
-        }
-    })
-
+    var patt = /\(((\d+).+?)\)/;
+  document.getElementById("order_shipping_id").onchange = function(){
+    var e = document.getElementById("order_shipping_id");
+    var str = e.options[e.selectedIndex].text;
+    str = str.match(patt)[2];
+    document.getElementById("shipping_price").innerHTML = str;
+    document.getElementById("total_and_shipping").innerHTML = parseInt(str)+<%= x %>;
+  }
 </script>

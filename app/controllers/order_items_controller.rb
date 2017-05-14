@@ -2,13 +2,6 @@ class OrderItemsController < ApplicationController
   def create
     @order = current_order
     @order_item = @order.order_items.new(order_item_params)
-    @order.user_id = current_user.id
-
-     @order.country = current_user.country
-     @order.city = current_user.city
-     @order.postal_code = current_user.postal_code
-     @order.street = current_user.street
-
     @order.save
     session[:order_id] = @order.id
   end
