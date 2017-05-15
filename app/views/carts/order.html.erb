@@ -25,9 +25,9 @@
           <td>
             <%= order_item.product.platform.name %>
           </td>
-          <td><%= order_item.product.price %></td>
+          <td><%= order_item.product.price %> zł</td>
           <td><%= order_item.quantity %></td>
-          <td><%= order_item.product.price*order_item.quantity %></td>
+          <td><%= order_item.product.price*order_item.quantity %> zł</td>
         </tr>
       <% end %>
       </tbody>
@@ -37,7 +37,7 @@
           <p class="pull-right">Łącznie:</p>
         </td>
         <td>
-          <%= x %>
+          <%= x %> zł
         </td>
       </tr>
       <tr>
@@ -69,11 +69,11 @@
   <div class="col-md-12 ">
     <% if signed_in? %>
       <% if current_user.country.blank? or current_user.city.blank? or current_user.postal_code.blank? or current_user.street.blank? %>
-          uzupelnij adres - nie mozesz zamowic produktu - link do edycji adresu / albo formularz : ?
+            <p>Aby zrealizować zamówienie muisz uzupełnić swój <%= link_to 'adres', users_edit_address_path(current_user.id) %></p>
       <% else %>
         <%= form_tag carts_finalize_path do %>
           <div class="form-group">
-            <%= label_tag 'label', 'zmień adres dostawy',class: 'control-label' %>
+            <%= label_tag 'label', 'Zmień adres dostawy',class: 'control-label' %>
             <%= check_box_tag 'form_dis' %>
           </div>
           <div class="form-group">
@@ -111,7 +111,7 @@
         <% end %>
       <% end %>
     <% else %>
-      Musisz sie zalogowac
+        <p>Aby zrealizować zamówienie muisz się <%= link_to 'zalogować', new_user_session_path %></p>
     <% end %>
   </div>
 </div>
@@ -133,12 +133,12 @@ $('#form_dis').on('click', function(){
 </script>
 
 <script type="text/javascript" charset="utf-8">
-    var patt = /\(((\d+).+?)\)/;
+    var patt = /\(((\d+).+)\)/;
   document.getElementById("order_shipping_id").onchange = function(){
     var e = document.getElementById("order_shipping_id");
     var str = e.options[e.selectedIndex].text;
-    str = str.match(patt)[2];
+    str = str.match(patt)[1];
     document.getElementById("shipping_price").innerHTML = str;
-    document.getElementById("total_and_shipping").innerHTML = parseInt(str)+<%= x %>;
+    document.getElementById("total_and_shipping").innerHTML = String(parseInt(str)+<%= x %>)+'zł';
   }
 </script>

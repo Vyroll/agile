@@ -3,8 +3,10 @@
     <table class="table table-bordered table-condensed table-striped">
       <thead>
       <tr>
+        <% if admin_signed_in? %>
         <th>Id</th>
         <th>Użytkownik</th>
+        <% end %>
         <th>Status</th>
         <th>Dostawa</th>
         <th>Stwożony</th>
@@ -14,8 +16,10 @@
       </thead>
       <tbody>
       <tr>
+        <% if admin_signed_in? %>
         <td><%= @order.id %></td>
         <td>(<%= @order.user.id %>)<%= @order.user.email %></td>
+        <% end %>
         <td><%= @order.order_status.name %></td>
         <td><%= @order.shipping.name %></td>
         <td><%= @order.created_at %></td>

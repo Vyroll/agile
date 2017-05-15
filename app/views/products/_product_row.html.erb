@@ -13,14 +13,13 @@
       <p><%= product.description %></p>
     </div>
     <div class="col-xs-4">
-
       <%= form_for order_item, remote: true do |f| %>
-      <h4 class="text-right">Cena: <span style="color: green"><%= number_to_currency product.price %></span></h4>
+      <h4 class="text-right">Cena: <span style="color: green"><%= product.price %>zł</span></h4>
         <div class="input-group">
-          <%= f.number_field :quantity, value: 1, class: "form-control", min: 1 %>
+          <%= f.number_field :quantity, value: 1, class: "form-control", min: 1, max: product.stock %>
           <div class="input-group-btn">
             <%= f.hidden_field :product_id, value: product.id %>
-            <%= f.submit 'Dodaj do koszyka', class: "btn btn-primary" %>
+            <%= f.submit 'Dodaj do koszyka', class: "btn btn-primary", disabled: product.stock == 0 %>
           </div>
         </div>
       <% end %>

@@ -10,16 +10,21 @@ class CartsController < ApplicationController
   def finalize
     params[:order][:order_status_id] = 1
     params[:order][:user_id] = current_user.id
+
     if params[:form_dis].nil?
       params[:order][:country] = current_user.country
       params[:order][:city] = current_user.city
       params[:order][:postal_code] = current_user.postal_code
       params[:order][:street] = current_user.street
     end
+
+    @order_items.each do |item|
+      item.product.update_attributes(stock: item.product.stock-item.quantity)
+    end
+
     Order.find(current_order.id).update_attributes(cart_params)
     session.delete(:order_id)
     redirect_to root_path
-  #   TODO: zapisac w sesji id koszyka i gdy sie zaloguje przypisac id uzytkownika do obecnego koszyka - zapytanie o zalogowanie w momencie przycisk podsumowanie
 
   end
 
