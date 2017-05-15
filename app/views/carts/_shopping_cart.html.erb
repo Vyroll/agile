@@ -9,11 +9,12 @@
 <% end %>
 
 <% if @order_items.size == 0 %>
-    <p class="text-center">
-      Koszyk jest pusty. Wróć do listy <%= link_to "listy produktów", products_path %> i dodaj produkty do koszyka.
-    </p>
+  <p class="text-center">
+    Koszyk jest pusty. Wróć do listy <%= link_to "listy produktów", products_path %> i dodaj produkty do koszyka.
+  </p>
 <% else %>
-    <% @order_items.each do |order_item| %>
-        <%= render 'carts/cart_row', product: order_item.product, order_item: order_item, show_total: true %>
-    <% end %>
+  <% @order_items.each do |order_item| %>
+    <%= render 'carts/cart_row', product: order_item.product, order_item: order_item, show_total: true %>
+  <% end %>
+  <%= link_to 'Podsumowanie', carts_order_path, class: "btn btn-primary"  %>
 <% end %>

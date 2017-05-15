@@ -5,62 +5,66 @@
   <div class="col-md-12">
     <h1>Produkty</h1>
     <% if admin_signed_in? %>
-        <table class="table table-bordered table-condensed table-striped">
-          <thead>
-          <tr>
-            <th>Nazwa</th>
-            <th>Opis</th>
-            <th>Kategoria</th>
-            <th>Platforma</th>
-            <th>Stock</th>
-            <th>Cena</th>
-            <th>Obraz</th>
-            <th>Narzędzia</th>
-          </tr>
-          </thead>
+      <table class="table table-bordered table-condensed table-striped">
+        <thead>
+        <tr>
+          <th>Nazwa</th>
+          <th>Opis</th>
+          <th>Kategoria</th>
+          <th>Platforma</th>
+          <th>Stock</th>
+          <th>Cena</th>
+          <th>Obraz</th>
+          <th>Narzędzia</th>
+        </tr>
+        </thead>
 
-          <tbody>
-          <% @products.each do |product| %>
-              <tr>
-                <td><%= product.name %></td>
-                <td><%= product.description %></td>
-                <td><%= product.category.name %></td>
+        <tbody>
+        <% @products.each do |product| %>
+            <tr>
+              <td><%= product.name %></td>
+              <td><%= product.description %></td>
+              <td><%= product.category.name %></td>
 
-                <td>
-                  <%= product.platform.name %>
-                </td>
+              <td>
+                <%= product.platform.name %>
+              </td>
 
-                <td><%= product.stock %></td>
-                <td><%= product.price %></td>
-                <td><%= image_tag(product.picture.url, class: 'table-pic') %></td>
+              <td><%= product.stock %></td>
+              <td><%= product.price %> zł</td>
+              <td>
+                <% if product.picture.url %>
+                  <%= image_tag(product.picture.url, class: 'table-pic') %>
+                <% end %>
+              </td>
 
 
-                <td>
-                  <ul class="list-inline">
-                    <li>
-                      <%= link_to product do %>
-                          <%= fa_icon 'eye', style: 'color: black' %> Podgląd
-                      <% end %>
-                    </li>
+              <td>
+                <ul class="list-inline">
+                  <li>
+                    <%= link_to product do %>
+                        <%= fa_icon 'eye', style: 'color: black' %> Podgląd
+                    <% end %>
+                  </li>
 
-                    <li>
-                      <%= link_to edit_product_path product do %>
-                          <%= fa_icon 'pencil', style: 'color: black' %> Edycja
-                      <% end %>
-                    </li>
+                  <li>
+                    <%= link_to edit_product_path product do %>
+                        <%= fa_icon 'pencil', style: 'color: black' %> Edycja
+                    <% end %>
+                  </li>
 
-                    <li>
-                      <%= link_to product, method: :delete, data: {confirm: 'Jesteś pewien?'} do %>
-                          <%= fa_icon 'times', style: 'color: black' %> Usuń
-                      <% end %>
-                    </li>
-                  </ul>
-                </td>
+                  <li>
+                    <%= link_to product, method: :delete, data: {confirm: 'Jesteś pewien?'} do %>
+                        <%= fa_icon 'times', style: 'color: black' %> Usuń
+                    <% end %>
+                  </li>
+                </ul>
+              </td>
 
-              </tr>
-          <% end %>
-          </tbody>
-        </table>
+            </tr>
+        <% end %>
+        </tbody>
+      </table>
 
         <%= link_to new_product_path, class: 'btn btn-default' do %>
             <%= fa_icon('plus') %>  Nowy Produkt

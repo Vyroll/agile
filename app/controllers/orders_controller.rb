@@ -66,11 +66,11 @@ class OrdersController < ApplicationController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_order
-       @order = Order.find(params[:id])
+      @order = Order.find(params[:id])
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def order_params
-      params.require(:order).permit(:shipping_id, :order_status_id,:country,:city,:postal_code,:street)
+      params.require(:order).permit(:shipping_id, :order_status_id, :country, :city, :postal_code, :street)
     end
 end

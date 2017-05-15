@@ -41,11 +41,30 @@
       <tbody>
       <% @orders.each do |order| %>
           <tr>
-            <td><%= order.order_status.name %></td>
-            <td><%= order.shipping.name %></td>
+            <td>
+              <% if order.order_status %>
+                <%= order.order_status.name %>
+              <% else %>
+                  <%= 'Nieustawiony' %>
+              <% end %>
+            </td>
+            <td>
+              <% if order.shipping %>
+                <%= order.shipping.name %>
+              <% else %>
+                  <%= 'Nieustawiony' %>
+              <% end %>
+            </td>
             <td><%= order.created_at %></td>
             <td><%= order.updated_at %></td>
-            <td><%= order.country %>, <%= order.city %>, <%= order.postal_code %>, <%= order.street %> </td>
+            <td>
+              <% if order.country and order.city and order.postal_code and order.street %>
+                <%= order.country %>, <%= order.city %>, <%= order.postal_code %>, <%= order.street %>
+              <% else %>
+                  <%= 'Nieustawiony' %>
+              <% end %>
+
+            </td>
             <td>
               <ul class="list-inline">
                 <li>

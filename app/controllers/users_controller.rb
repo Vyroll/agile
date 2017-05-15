@@ -3,7 +3,7 @@ class UsersController < ApplicationController
 
 
   def show
-    @orders = Order.where(user_id: @user.id)
+    @orders = Order.where(user_id: @user.id)#.where.not(order_status: nil)
   end
 
   def edit_address
