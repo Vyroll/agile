@@ -3,14 +3,37 @@
     <%= form_for order do |f| %>
 
 
+
         <div class="form-group">
           <%= f.label 'Nazwa' %>
           <%= f.collection_select :order_status_id, OrderStatus.all, :id, :name,{}, {class:'form-control'} %>
         </div>
 
         <div class="form-group">
-          <%= f.submit 'Zmień Zamówienie', class:'btn btn-primary btn-block'%>
+          <%= check_box_tag 'form_dis' %>
+          <%= label_tag 'label', 'Podaj dodatkowe informacje:', class: 'control-label' %>
+
+        </div>
+
+        <div class="form-group">
+          <%= label_tag 'Dodatkowe informacje:' %>
+          <%= text_area_tag 'info','', class:'form-control', placeholder: 'podaj info', disabled: 'disabled' %>
+        </div>
+
+        <div class="form-group">
+          <%= f.submit 'Zapisz', class:'btn btn-primary btn-block'%>
         </div>
     <% end %>
   </div>
 </div>
+
+
+<script type="text/javascript" charset="utf-8">
+    $('#form_dis').on('click', function(){
+        if($(this).prop('checked')){
+            $('#info').removeAttr('disabled');
+        } else {
+            $('#info').attr('disabled', 'disabled');
+        }
+    })
+</script>

@@ -6,7 +6,10 @@
 <body>
 <h1>Welcome <%= @user.email %></h1>
 <p>
-  Status twojego zamowienia zostal zmieniony: <%= @stat %><br>
+  Status twojego zamowienia zostal zmieniony: <%= @stat %><br/>
 </p>
+<% if @dis %>
+  <p>Dodatkow informacje: <%= @info %></p>
+<% end %>
 </body>
 </html>

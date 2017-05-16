@@ -14,15 +14,13 @@
 //= require bootstrap-sprockets
 //= require jquery_ujs
 //= require turbolinks
+//= require jquery.fancybox.min.js
 //= require_tree .
 
-// $('#form_dis').change(function() {
-//     if ($('#form_dis').is(":checked")) {
-//         $('#city').attr('disabled', true);
-//     }
-//     else {
-//         $('#city').attr('disabled', false);
-//     }
-// });
 
+$.fancybox.defaults.slideShow = false;
+$.fancybox.defaults.fullScreen = false;
+$.fancybox.defaults.thumbs = false;
+$.fancybox.defaults.infobar = false;
+$.fancybox.defaults.buttons = false;
 
