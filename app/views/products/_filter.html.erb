@@ -1,19 +1,29 @@
 <div class="row">
   <div class="col-md-12">
-    <%= form_tag products_path, method: 'get' do %>
+    <%= form_tag products_path, method: 'get', enforce_utf8: false, class:'form-inline' do %>
         <fieldset>
           <legend>Filtrowanie:</legend>
           <div class="form-group">
-            <div class="col-md-1"><%= label_tag(:fl, 'Kategoria:') %></div>
-            <div class="col-md-2"><%= collection_select(:product, :fl, Category.all, :id, :name, {}, {class: 'form-control'}) %></div>
-            <div class="col-md-1"><%= label_tag(:fl, 'Platforma:') %></div>
-            <div class="col-md-2"><%= collection_select(:product, :fl, Category.all, :id, :name, {}, {class: 'form-control'}) %></div>
-            <div class="col-md-2"><%= submit_tag 'Filtruj', class: 'btn btn-default' %></div>
+            <%= label_tag(:category_id, 'Kategoria:') %>
+            <%= collection_select(:filter, :category_id, Category.all, :id, :name, {:include_blank => 'wybierz'}, {class: 'form-control'}) %>
+          </div>
+          <div class="form-group">
+            <%= label_tag(:platform_id, 'Platforma:') %>
+            <%= collection_select(:filter, :platform_id, Platform.all, :id, :name, {:include_blank => 'wybierz'}, {class: 'form-control'}) %>
+          </div>
+          <div class="form-group">
+            <%= submit_tag 'Filtruj', name: nil, class: 'btn btn-default' %>
           </div>
         </fieldset>
     <% end %>
   </div>
 </div>
 
-
-<!-- TODO: adjust with form-horizontal and proper form-groups -->
+<% if params[:filter] %>
+  <script type="text/javascript" charset="utf-8">
+      $(window).load(function() {
+          $('#filter_category_id').val(<%= params[:filter][:category_id] %>);
+          $('#filter_platform_id').val(<%= params[:filter][:platform_id] %>);
+      });
+  </script>
+<% end %>

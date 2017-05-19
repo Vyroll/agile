@@ -28,7 +28,7 @@ class ShippingsController < ApplicationController
 
     respond_to do |format|
       if @shipping.save
-        format.html { redirect_to @shipping, notice: 'Dane dostawy zostały edytowane.' }
+        format.html { redirect_to @shipping, notice: 'Nowy rodzaj dostawy został utworzony.' }
         format.json { render :show, status: :created, location: @shipping }
       else
         format.html { render :new }
@@ -42,7 +42,7 @@ class ShippingsController < ApplicationController
   def update
     respond_to do |format|
       if @shipping.update(shipping_params)
-        format.html { redirect_to @shipping, notice: 'Shipping was successfully updated.' }
+        format.html { redirect_to @shipping, notice: 'Dane rodzaju dostawy zostały edytowane.' }
         format.json { render :show, status: :ok, location: @shipping }
       else
         format.html { render :edit }
@@ -56,7 +56,7 @@ class ShippingsController < ApplicationController
   def destroy
     @shipping.destroy
     respond_to do |format|
-      format.html { redirect_to shippings_url, notice: 'Shipping was successfully destroyed.' }
+      format.html { redirect_to shippings_url, notice: 'Usunięto rodzaj dostawy.' }
       format.json { head :no_content }
     end
   end

@@ -29,7 +29,7 @@ class OrdersController < ApplicationController
 
     respond_to do |format|
       if @order.save
-        format.html { redirect_to @order, notice: 'Dane zamówienia zostały edytowane.' }
+        format.html { redirect_to @order, notice: 'Nowe zamówienie zostało utworzone.' }
         format.json { render :show, status: :created, location: @order }
       else
         format.html { render :new }
@@ -41,10 +41,12 @@ class OrdersController < ApplicationController
   # PATCH/PUT /orders/1
   # PATCH/PUT /orders/1.json
   def update
-    StatusMailer.welcome_email(@order.user, params[:order][:order_status_id]).deliver_now
+
+    StatusMailer.welcome_email(@order.user, params[:order][:order_status_id], params[:info],params[:form_dis]).deliver_now
+
     respond_to do |format|
       if @order.update(order_params)
-        format.html { redirect_to @order, notice: 'Order was successfully updated.' }
+        format.html { redirect_to @order, notice: 'Dane zamówienia zostały edytowane.' }
         format.json { render :show, status: :ok, location: @order }
       else
         format.html { render :edit }
@@ -58,7 +60,7 @@ class OrdersController < ApplicationController
   def destroy
     @order.destroy
     respond_to do |format|
-      format.html { redirect_to orders_url, notice: 'Order was successfully destroyed.' }
+      format.html { redirect_to orders_url, notice: 'Zamówienie zostało usunięte.' }
       format.json { head :no_content }
     end
   end

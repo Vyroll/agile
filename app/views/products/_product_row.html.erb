@@ -6,7 +6,11 @@
     </div>
     <% if product.picture.url %>
         <div class="col-xs-2">
-          <p><%= image_tag(product.picture.url, class: 'pic') %></p>
+          <p>
+          <%= link_to product.picture.url, data:{fancybox:'gallery'} do %>
+              <%= image_tag(product.picture.url, class: 'pic') %>
+          <% end %>
+          </p>
         </div>
     <% end %>
     <div class="col-xs-4">

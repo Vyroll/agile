@@ -18,7 +18,7 @@ class CartsController < ApplicationController
       params[:order][:street] = current_user.street
     end
 
-    @order_items.each do |item|
+    current_order.order_items.each do |item|
       item.product.update_attributes(stock: item.product.stock-item.quantity)
     end
 

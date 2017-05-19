@@ -24,6 +24,9 @@
 
 #Product.create(name: '25ttt', price: '52')
 
+
+######################################################################################
+
 Category.create(name: 'MMO')
 Category.create(name: 'FPS')
 Category.create(name: 'RTS')
@@ -60,10 +63,10 @@ Shipping.create(name: 'Pocztex24', price: '24.0')
 Shipping.create(name: 'Kurier', price: '25.0')
 Shipping.create(name: 'Inpost', price: '15.0')
 
-# Admin.create(encrypted_password:'$2a$11$vQQbbO8nibWTr2Ds7DYSCuiiKBHKeKYhBcZqvxT1QJSGzGPJFEHoC',email:'admin@gmail.com')
-# User.create(encrypted_password:'$2a$11$QoNsX3HSQP5kgBQnb8Cup.yrZUYsKTSdjlpHGVW0Nk7nU2UXvEjyu',email:'user@gmail.com')
-# User.create(encrypted_password:'$2a$11$fRRj/cb2oQOYYpk9wF8XIOb7Uv3EFCXnaKJg23rL4PQmZJ93DqzJK',email:'user2@gmail.com')
-# User.create(encrypted_password:'$2a$11$e8AabAJoWJE6ZBFm3jHNBuBecwYBnu94rb27wv4QwfJHjEKx5fC9y',email:'user3@gmail.com')
+Admin.create(encrypted_password:'adminadmin',email:'admin@gmail.com')
+User.create(encrypted_password:'useruser',email:'user@gmail.com')
+User.create(encrypted_password:'useruser',email:'user2@gmail.com')
+User.create(encrypted_password:'useruser',email:'user3@gmail.com')
 
 Product.create(
     name: 'The Legend of Zelda: Breath of the Wild',
@@ -89,10 +92,8 @@ Product.create(
     name: 'Battlefield 1',
     description: 'Kolejna z pełnoprawnych części jednej z najpopularniejszych serii wojennych strzelanin FPP, rozwijanej od 2002 roku we współpracy studia DICE i koncernu Electronic Arts. Gra o wymownym tytule Battlefield 1 przenosi nas w zupełnie nowe dla cyklu realia I wojny światowej, a kampania fabularna ukazuje ów globalny konflikt z perspektywy kilku niezależnych postaci, którym przyszło uczestniczyć w pierwszej w XX wieku nowoczesnej wojnie. Pod względem rozgrywki tytuł stanowi swoisty powrót do korzeni cyklu, oferując większe i bardziej otwarte mapy oraz sporą swobodę działania. Jednocześnie mechanika kampanii jednoosobowej została znacznie bardziej zbliżona do specyfiki trybu multiplayer, w którym brać może udział nawet do 64 graczy. Nowe realia to nie tylko właściwe dla epoki uzbrojenie oraz pojazdy (samoloty, czołgi czy okręty wojenne), ale także zupełnie inny styl walki. Bitwy w grze stały się bardziej brutalne, dużo większy nacisk położono też na walkę w zwarciu.',
     stock: '300',
-    category_id: '5',
+    category_id: '2',
     price: '59.99',
-    # picture: open('http://img2.gram.pl/box-battlefield-1-pc-4.jpg'),
-    platform_id: '2'
+# picture: open('http://img2.gram.pl/box-battlefield-1-pc-4.jpg'),
+    platform_id: '1'
 )
-
-
