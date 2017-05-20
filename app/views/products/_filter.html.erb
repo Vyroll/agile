@@ -31,6 +31,8 @@
       $(window).load(function() {
           $('#filter_category_id').val(<%= params[:filter][:category_id] %>);
           $('#filter_platform_id').val(<%= params[:filter][:platform_id] %>);
+          $('#filter_discount_min').val(<%= params[:filter][:discount_min] %>);
+          $('#filter_discount_max').val(<%= params[:filter][:discount_max] %>);
       });
   </script>
 <% end %>
