@@ -8,13 +8,14 @@
       <table class="table table-bordered table-condensed table-striped">
         <thead>
         <tr>
+          <th>Obraz</th>
           <th>Nazwa</th>
           <th>Opis</th>
           <th>Kategoria</th>
           <th>Platforma</th>
-          <th>Stan M agazynowy</th>
+          <th>Stan Magazynowy</th>
           <th>Cena</th>
-          <th>Obraz</th>
+          <th>Obniżka</th>
           <th>Narzędzia</th>
         </tr>
         </thead>
@@ -22,6 +23,11 @@
         <tbody>
         <% @products.each do |product| %>
             <tr>
+              <td>
+                <% if product.picture[0] %>
+                    <%= image_tag(product.picture[0].url, class: 'table-pic') %>
+                <% end %>
+              </td>
               <td><%= product.name %></td>
               <td><%= product.description %></td>
               <td><%= product.category.name %></td>
@@ -33,12 +39,12 @@
               <td><%= product.stock %></td>
               <td><%= sprintf "%0.02f", product.price %> zł</td>
               <td>
-                <% if product.picture[0] %>
-                  <%= image_tag(product.picture[0].url, class: 'table-pic') %>
+                <% if product.discount != 0 %>
+                    <div style="color: red"><%= product.discount %>%</div>
+                <% else %>
+                    <div><%= product.discount %>%</div>
                 <% end %>
               </td>
-
-
               <td>
                 <ul class="list-inline">
                   <li>

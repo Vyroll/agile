@@ -32,28 +32,62 @@
     <table class="table table-bordered table-condensed table-striped">
       <thead>
       <tr>
+        <th>Obraz</th>
         <th>Produkt</th>
-        <th>Produkt</th>
-        <th>cena</th>
-        <th>ilosc</th>
-        <th>razem</th>
+        <th>Cena</th>
+        <th>Ilość</th>
+        <th>Razem</th>
       </tr>
       </thead>
       <tbody>
+      <% x=0 %>
       <% @order_items.each do |item| %>
+          <% x+=item.unit_price*item.quantity %>
           <tr>
-            <td><%= item.product.name %></td>
             <td>
-              <% if item.product.picture.url %>
-                  <%= image_tag(item.product.picture.url, class: 'table-pic') %>
+              <% if item.product.picture %>
+                  <%= image_tag(item.product.picture[0].url, class: 'table-pic') %>
               <% end %>
             </td>
-            <td><%= item.unit_price %></td>
+            <td><%= item.product.name %></td>
+            <td><%= sprintf "%0.02f", item.unit_price %> zł</td>
             <td><%= item.quantity %></td>
-            <td><%= item.unit_price*item.quantity %></td>
+            <td><%= sprintf "%0.02f", item.unit_price*item.quantity %> zł</td>
           </tr>
       <% end %>
       </tbody>
+
+      <tfoot>
+      <tr>
+        <td colspan="4">
+          <p class="pull-right">Łącznie:</p>
+        </td>
+        <td>
+          <%= sprintf "%0.02f", x %> zł
+        </td>
+      </tr>
+      <tr>
+        <td colspan="4">
+          <p class="pull-right">Dostawa:</p>
+        </td>
+        <td>
+          <p id="shipping_price">
+            <%= sprintf "%0.02f", @order.shipping.price %> zł
+          </p>
+        </td>
+      </tr>
+      <tr>
+        <td colspan="4">
+          <p class="pull-right">Z dostawą:</p>
+        </td>
+        <td>
+          <p id="total_and_shipping">
+            <%= sprintf "%0.02f", x+@order.shipping.price %> zł
+          </p>
+        </td>
+      </tr>
+      </tfoot>
+
     </table>
 
 

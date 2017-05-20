@@ -5,12 +5,18 @@ class ProductsController < ApplicationController
   # GET /products.json
 
   def index
-
-
+    @products = Product.all
     if params[:filter]
-      @products = Product.where(search_params)
-    else
-      @products = Product.all
+      p = search_params
+      puts '++++++++'
+      puts p.inspect
+      puts '++++++++'
+      @products = @products.where(category_id: p[:category_id]) unless p[:category_id].blank?
+      @products = @products.where(platform_id: p[:platform_id]) unless p[:platform_id].blank?
+      @products = @products.where("discount >= #{p[:discount_min]}") unless p[:discount_min].blank?
+      @products = @products.where("discount <= #{p[:discount_max]}") unless p[:discount_max].blank?
+
+
     end
 
     @order_item = current_order.order_items.new
@@ -35,7 +41,6 @@ class ProductsController < ApplicationController
   def create
 
     @product = Product.new(product_params)
-    u = User.new(params[:user])
     respond_to do |format|
       if @product.save
         format.html { redirect_to @product, notice: 'Nowy produkt został utworzony.' }
@@ -79,13 +84,13 @@ class ProductsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def product_params
-      params.require(:product).permit(:name, :description, :stock, :category_id, :price, {picture: []}, :platform_id, :fil_cat, :fil_plat)
+      params.require(:product).permit(:name, :description, :stock, :category_id, :price, {picture: []}, :platform_id, :fil_cat, :fil_plat, :discount)
     end
 
   def search_params
     params.
         # Optionally, whitelist your search parameters with permit
-        require(:filter).permit(:platform_id,:category_id).
+        require(:filter).permit(:platform_id,:category_id,:discount_min,:discount_max).
         # Delete any passed params that are nil or empty string
         delete_if {|key, value| value.blank? }
   end

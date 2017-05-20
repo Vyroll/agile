@@ -18,12 +18,22 @@
           <% end %>
         </div>
     <% end %>
-    <div class="col-xs-6">
+    <div class="col-xs-5">
       <p><%= product.description %></p>
     </div>
-    <div class="col-xs-2">
+    <div class="col-xs-3">
       <%= form_for order_item, remote: true do |f| %>
-      <h4 class="text-right">Cena: <span style="color: green"><%= sprintf "%0.02f",product.price %>zł</span></h4>
+
+      <% if product.discount!=0 %>
+            <h4 class="text-right">
+              <span class="label text-right label-danger"><%= "#{product.discount}%" %></span>
+              <del>Cena: <span style="color: green"><%= sprintf "%0.02f", product.price %>zł</span></del>
+            </h4>
+        <h4 class="text-right">Cena: <span style="color: red"><%=  sprintf "%0.02f", product.price-(product.price*(product.discount.to_f / 100 ))%>zł</span></h4>
+      <% else %>
+          <h4 class="text-right">Cena: <span style="color: green"><%= sprintf "%0.02f",product.price %>zł</span></h4>
+      <% end %>
+
         <div class="input-group">
           <%= f.number_field :quantity, value: 1, class: "form-control", min: 1, max: product.stock %>
           <div class="input-group-btn">

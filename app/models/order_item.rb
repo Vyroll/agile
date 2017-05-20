@@ -12,7 +12,7 @@ class OrderItem < ApplicationRecord
     if persisted?
       self[:unit_price]
     else
-      product.price
+      product.price-(product.price*(product.discount.to_f / 100 ))
     end
   end
 

@@ -16,7 +16,7 @@
       <tbody>
       <% x=0 %>
       <% @order_items.each do |order_item| %>
-          <% x+=order_item.product.price*order_item.quantity %>
+          <% x+=order_item.unit_price*order_item.quantity %>
         <tr>
           <td><%= image_tag(order_item.product.picture[0].url, class: 'table-pic') %></td>
           <td><%= order_item.product.name %></td>
@@ -25,9 +25,9 @@
           <td>
             <%= order_item.product.platform.name %>
           </td>
-          <td><%= sprintf "%0.02f", order_item.product.price %> zł</td>
+          <td><%= sprintf "%0.02f", order_item.unit_price %> zł</td>
           <td><%= order_item.quantity %></td>
-          <td><%= sprintf "%0.02f", order_item.product.price*order_item.quantity %> zł</td>
+          <td><%= sprintf "%0.02f", order_item.unit_price*order_item.quantity %> zł</td>
         </tr>
       <% end %>
       </tbody>
@@ -42,21 +42,21 @@
       </tr>
       <tr>
         <td colspan="7">
-          <p class="pull-right">Przesyłka:</p>
+          <p class="pull-right">Dostawa:</p>
         </td>
         <td>
           <p id="shipping_price">
-            Wybierz rodzaj przesyłki
+            Wybierz rodzaj dostawy
           </p>
         </td>
       </tr>
       <tr>
         <td colspan="7">
-          <p class="pull-right">Z przesyłką:</p>
+          <p class="pull-right">Z dostawą:</p>
         </td>
         <td>
           <p id="total_and_shipping">
-            Wybierz rodzaj przesyłki
+            Wybierz rodzaj dostawy
           </p>
         </td>
       </tr>
@@ -94,7 +94,7 @@
             <%= text_field_tag 'order[street]', current_user.street, class: 'form-control', disabled: 'disabled' %>
           </div>
           <div class="form-group">
-            <%= label_tag 'label', 'Wybierz metodę dostawy',class: 'control-label' %>
+            <%= label_tag 'label', 'Wybierz rodzaj dostawy',class: 'control-label' %>
             <%= collection_select :order,
                                   :shipping_id,
                                   Shipping.all.collect { |t| [ t.id, "#{t.name}(#{sprintf "%0.02f", t.price} zł)" ] },
