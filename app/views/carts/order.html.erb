@@ -18,16 +18,16 @@
       <% @order_items.each do |order_item| %>
           <% x+=order_item.product.price*order_item.quantity %>
         <tr>
-          <td><%= image_tag(order_item.product.picture.url, class: 'table-pic') %></td>
+          <td><%= image_tag(order_item.product.picture[0].url, class: 'table-pic') %></td>
           <td><%= order_item.product.name %></td>
           <td><%= order_item.product.description %></td>
           <td><%= order_item.product.category.name %></td>
           <td>
             <%= order_item.product.platform.name %>
           </td>
-          <td><%= order_item.product.price %> zł</td>
+          <td><%= sprintf "%0.02f", order_item.product.price %> zł</td>
           <td><%= order_item.quantity %></td>
-          <td><%= order_item.product.price*order_item.quantity %> zł</td>
+          <td><%= sprintf "%0.02f", order_item.product.price*order_item.quantity %> zł</td>
         </tr>
       <% end %>
       </tbody>
@@ -37,7 +37,7 @@
           <p class="pull-right">Łącznie:</p>
         </td>
         <td>
-          <%= x %> zł
+          <%= sprintf "%0.02f", x %> zł
         </td>
       </tr>
       <tr>
@@ -77,19 +77,19 @@
             <%= label_tag 'label', 'Zmień adres dostawy',class: 'control-label' %>
 
           </div>
-          <div class="form-group">
+          <div class="form-group col-md-6">
             <%= label_tag 'label', 'Kraj',class: 'control-label' %>
             <%= text_field_tag 'order[country]', current_user.country, class: 'form-control', disabled: 'disabled' %>
           </div>
-          <div class="form-group">
+          <div class="form-group col-md-6">
             <%= label_tag 'label', 'Miasto',class: 'control-label' %>
             <%= text_field_tag 'order[city]', current_user.city, class: 'form-control', disabled: 'disabled' %>
           </div>
-          <div class="form-group">
+          <div class="form-group col-md-6">
             <%= label_tag 'label', 'Kod pocztowy',class: 'control-label' %>
             <%= text_field_tag 'order[postal_code]', current_user.postal_code, class: 'form-control', disabled: 'disabled'%>
           </div>
-          <div class="form-group">
+          <div class="form-group col-md-6">
             <%= label_tag 'label', 'Ulica',class: 'control-label' %>
             <%= text_field_tag 'order[street]', current_user.street, class: 'form-control', disabled: 'disabled' %>
           </div>
@@ -97,7 +97,7 @@
             <%= label_tag 'label', 'Wybierz metodę dostawy',class: 'control-label' %>
             <%= collection_select :order,
                                   :shipping_id,
-                                  Shipping.all.collect { |t| [ t.id, "#{t.name}(#{t.price} zł)" ] },
+                                  Shipping.all.collect { |t| [ t.id, "#{t.name}(#{sprintf "%0.02f", t.price} zł)" ] },
                                   :first,
                                   :last,
                                   {},
@@ -140,6 +140,6 @@ $('#form_dis').on('click', function(){
     var str = e.options[e.selectedIndex].text;
     str = str.match(patt)[1];
     document.getElementById("shipping_price").innerHTML = str;
-    document.getElementById("total_and_shipping").innerHTML = String(parseInt(str)+<%= x %>)+'zł';
+    document.getElementById("total_and_shipping").innerHTML = String(parseInt(str)+<%= sprintf "%0.02f", x %>)+'zł';
   }
 </script>

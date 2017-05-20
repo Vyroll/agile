@@ -63,10 +63,10 @@ Shipping.create(name: 'Pocztex24', price: '24.0')
 Shipping.create(name: 'Kurier', price: '25.0')
 Shipping.create(name: 'Inpost', price: '15.0')
 
-Admin.create(encrypted_password:'adminadmin',email:'admin@gmail.com')
-User.create(encrypted_password:'useruser',email:'user@gmail.com')
-User.create(encrypted_password:'useruser',email:'user2@gmail.com')
-User.create(encrypted_password:'useruser',email:'user3@gmail.com')
+Admin.create(password:'adminadmin',email:'admin@gmail.com')
+User.create(password:'useruser',email:'user@gmail.com')
+User.create(password:'useruser',email:'user2@gmail.com')
+User.create(password:'useruser',email:'user3@gmail.com')
 
 Product.create(
     name: 'The Legend of Zelda: Breath of the Wild',

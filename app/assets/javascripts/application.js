@@ -20,7 +20,7 @@
 
 $.fancybox.defaults.slideShow = false;
 $.fancybox.defaults.fullScreen = false;
-$.fancybox.defaults.thumbs = false;
-$.fancybox.defaults.infobar = false;
-$.fancybox.defaults.buttons = false;
+$.fancybox.defaults.thumbs = true;
+$.fancybox.defaults.infobar = true;
+$.fancybox.defaults.buttons = true;
 

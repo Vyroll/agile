@@ -8,12 +8,10 @@ $s7: rgba(245,172,202,1);
 $active: rgba(91,91,91,1);
 $font: rgba(0,0,0,1);
 
-$nav-height: 55px;
+$nav-height: 50px;
 
 
-.black{
-  color: black;
-}
+
 body{
   padding-top: $nav-height + 60px;
   background-color: $background;
@@ -24,6 +22,11 @@ body{
 }
 
 .navbar{
+  .navbar-toggle{
+    .icon-bar{
+      background-color: #FFF;
+    }
+  }
   .dropdown-menu{
     background-color: $navbar;
   }
@@ -32,7 +35,9 @@ body{
   .active{
     background-color: $active;
   }
+
   border-bottom: $accent solid 2px;
+
   ul{
     li{
       a{
@@ -40,6 +45,8 @@ body{
       }
     }
   }
+
+
 }
 
 .pic {

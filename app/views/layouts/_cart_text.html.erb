@@ -1,5 +1,5 @@
-<%= link_to carts_path, class: "btn btn-link" do %>
-
+<%= link_to carts_path do %>
+    <%= fa_icon('shopping-cart') %>
     <span class="label label-as-badge
       <% if current_order.order_items.size == 0 %>
       label-default
@@ -8,5 +8,5 @@
       <% end %>
     ">
     <%= "#{current_order.order_items.size}" %></span> Koszyk
-    <%= fa_icon('shopping-cart') %>
+
 <% end %>

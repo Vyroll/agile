@@ -12,7 +12,7 @@
           <th>Opis</th>
           <th>Kategoria</th>
           <th>Platforma</th>
-          <th>Stock</th>
+          <th>Stan M agazynowy</th>
           <th>Cena</th>
           <th>Obraz</th>
           <th>Narzędzia</th>
@@ -31,10 +31,10 @@
               </td>
 
               <td><%= product.stock %></td>
-              <td><%= product.price %> zł</td>
+              <td><%= sprintf "%0.02f", product.price %> zł</td>
               <td>
-                <% if product.picture.url %>
-                  <%= image_tag(product.picture.url, class: 'table-pic') %>
+                <% if product.picture[0] %>
+                  <%= image_tag(product.picture[0].url, class: 'table-pic') %>
                 <% end %>
               </td>
 

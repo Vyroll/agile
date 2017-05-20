@@ -3,6 +3,6 @@ class Product < ApplicationRecord
   belongs_to :platform
   has_many :order_items
 
-  mount_uploader :picture, PictureUploader
-
+  mount_uploaders :picture, PictureUploader
+  serialize :picture, JSON
 end

@@ -35,7 +35,7 @@ class ProductsController < ApplicationController
   def create
 
     @product = Product.new(product_params)
-
+    u = User.new(params[:user])
     respond_to do |format|
       if @product.save
         format.html { redirect_to @product, notice: 'Nowy produkt został utworzony.' }
@@ -79,7 +79,7 @@ class ProductsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def product_params
-      params.require(:product).permit(:name, :description, :stock, :category_id, :price, :picture, :platform_id, :fil_cat, :fil_plat)
+      params.require(:product).permit(:name, :description, :stock, :category_id, :price, {picture: []}, :platform_id, :fil_cat, :fil_plat)
     end
 
   def search_params
