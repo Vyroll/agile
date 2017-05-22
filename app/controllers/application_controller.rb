@@ -11,4 +11,19 @@ class ApplicationController < ActionController::Base
     end
   end
 
+  def misix (settings)
+
+    settings.each do |s|
+      if s[0].to_s == params[:action]
+        current_admin.amenities.each do |a|
+          if a == s[1]
+            return
+          end
+        end
+        redirect_to root_path
+      end
+    end
+
+  end
+
 end

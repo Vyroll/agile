@@ -27,8 +27,12 @@
               <li class="<%= 'active' if params[:controller] == 'platforms' %>"><%= link_to('Platformy', platforms_path)  %></li>
               <li class="<%= 'active' if params[:controller] == 'shippings' %>"><%= link_to('Rodzaje Dostawy', shippings_path)  %></li>
               <li class="<%= 'active' if params[:controller] == 'products' %>"><%= link_to('Produkty', products_path)  %></li>
+              <li class="<%= 'active' if params[:controller] == 'amenities' %>"><%= link_to('Uprawnienia', amenities_path)  %></li>
+              <li class="<%= 'active' if params[:controller] == 'admins' %>"><%= link_to('Admins', admins_path)  %></li>
 
-            <% end %><!-- /admin -->
+
+
+                <% end %><!-- /admin -->
 
             <% else %>
             <li class="<%= 'active' if params[:controller] == 'products' %>"><%= link_to 'Produkty', products_path %></li>
