@@ -1,9 +1,11 @@
-<p id="notice"><%= notice %></p>
+<div class="row">
+  <div class="col-md-12">
+    <p>
+      <strong>Nazwa:</strong>
+      <%= @amenity.name %>
+    </p>
 
-<p>
-  <strong>Name:</strong>
-  <%= @amenity.name %>
-</p>
-
-<%= link_to 'Edit', edit_amenity_path(@amenity) %> |
-<%= link_to 'Back', amenities_path %>
+    <%= link_to 'Edytuj', edit_amenity_path(@amenity), class: 'btn btn-default' %> |
+    <%= link_to 'Wstecz', amenities_path, class: 'btn btn-default' %>
+  </div>
+</div>

@@ -1,5 +1,9 @@
 class PlatformsController < ApplicationController
+  before_action :authenticate_admin!
   before_action :set_platform, only: [:show, :edit, :update, :destroy]
+  before_action do
+    permissions({index:'Kategorie', show:'Kategorie', new:'Kategorie', edit:'Kategorie', create:'Kategorie', update:'Kategorie', destroy:'Kategorie'})
+  end
 
   # GET /platforms
   # GET /platforms.json

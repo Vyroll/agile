@@ -1,6 +1,10 @@
-<h1>Editing Amenity</h1>
+<div class="row">
+  <div class="col-md-12">
+    <h1>Edytowanie Uprawnienia</h1>
 
-<%= render 'form', amenity: @amenity %>
+    <%= render 'form', amenity: @amenity %>
 
-<%= link_to 'Show', @amenity %> |
-<%= link_to 'Back', amenities_path %>
+    <%= link_to 'Podgląd', @amenity, class: 'btn btn-default' %> |
+    <%= link_to 'Wstecz', amenities_path, class: 'btn btn-default' %>
+  </div>
+</div>

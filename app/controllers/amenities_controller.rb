@@ -1,5 +1,9 @@
 class AmenitiesController < ApplicationController
+  before_action :authenticate_admin!
   before_action :set_amenity, only: [:show, :edit, :update, :destroy]
+  before_action do
+    permissions({index:'Super Admin', show:'Super Admin', new:'Super Admin', edit:'Super Admin', create:'Super Admin', update:'Super Admin', destroy:'Super Admin'})
+  end
 
   # GET /amenities
   # GET /amenities.json

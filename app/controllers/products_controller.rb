@@ -1,6 +1,10 @@
 class ProductsController < ApplicationController
+  before_action :authenticate_admin!, except: [:index]
   before_action :set_product, only: [:show, :edit, :update, :destroy]
-  before_action :authenticate_admin!, except: [:index, :show]
+  before_action do
+    permissions({index:'Magazyn', show:'Magazyn', new:'Magazyn', edit:'Magazyn', create:'Magazyn', update:'Magazyn', destroy:'Magazyn'})
+  end
+
   # GET /products
   # GET /products.json
 

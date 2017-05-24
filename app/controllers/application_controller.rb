@@ -11,19 +11,29 @@ class ApplicationController < ActionController::Base
     end
   end
 
-  def misix (settings)
-
-    settings.each do |s|
-      if s[0].to_s == params[:action]
-        current_admin.amenities.each do |a|
-          if a == s[1]
-            return
+  def permissions (settings)
+    if admin_signed_in?
+      settings.each do |s|
+        if s[0].to_s == params[:action]
+          current_admin.amenities.each do |a|
+            if a == s[1]
+              return
+            end
           end
+          redirect_to new_user_session_path, alert: "Musisz mieć uprawnienia \"#{s[1]}\", aby uzyskać dostęp"
         end
-        redirect_to root_path
       end
     end
-
   end
+
+  def authenticate_any!
+    if admin_signed_in? or user_signed_in?
+      true
+    else
+      redirect_to new_user_session_path, alert: 'Musisz być zalogowany aby kontynuować'
+    end
+  end
+
+
 
 end

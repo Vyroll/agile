@@ -1,0 +1,16 @@
+<div class="row">
+  <div class="col-md-12">
+    <p>
+      <strong>Email:</strong>
+      <%= @admin.email %>
+    </p>
+    <p>
+      <strong>Uprawnienia:</strong>
+      <% @admin.amenities.as_json.each do |f| %>
+          <%= f %>,
+      <% end %>
+    </p>
+    <%= link_to 'Edytuj', edit_admin_path(@admin), class: 'btn btn-default' %> |
+    <%= link_to 'Wstecz', admins_path, class: 'btn btn-default' %>
+  </div>
+</div>

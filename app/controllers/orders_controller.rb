@@ -1,4 +1,13 @@
 class OrdersController < ApplicationController
+  before_action :authenticate_any!, only: [:show]
+  before_action :authenticate_admin!, except: [:show, :new]
+  before_action do
+    permissions({index:'Zamówienia', edit:'Zamówienia', create:'Zamówienia', update:'Zamówienia', destroy:'Zamówienia'})
+  end
+
+
+  # before_action :authenticate_user!
+
   before_action :set_order, only: [:show, :edit, :update, :destroy]
 
   # GET /orders
@@ -42,7 +51,7 @@ class OrdersController < ApplicationController
   # PATCH/PUT /orders/1.json
   def update
 
-    StatusMailer.welcome_email(@order.user, params[:order][:order_status_id], params[:info],params[:form_dis]).deliver_now
+    StatusMailer.welcome_email(@order, params).deliver_now
 
     respond_to do |format|
       if @order.update(order_params)

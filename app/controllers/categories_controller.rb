@@ -1,8 +1,8 @@
 class CategoriesController < ApplicationController
+  before_action :authenticate_admin!
   before_action :set_category, only: [:show, :edit, :update, :destroy]
-  # before_action :authenticate_user!, only: [:index]
   before_action do
-    misix({index: 'normal',new: 'pro'})
+    permissions({index:'Kategorie', show:'Kategorie', new:'Kategorie', edit:'Kategorie', create:'Kategorie', update:'Kategorie', destroy:'Kategorie'})
   end
 
 

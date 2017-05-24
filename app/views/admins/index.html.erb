@@ -1,46 +1,53 @@
 <div class="row">
   <div class="col-md-12">
-    <h1>Uprawnienia</h1>
+    <h1>Administratorzy</h1>
 
     <table class="table table-bordered table-condensed table-striped">
       <thead>
         <tr>
-          <th>Nazwa</th>
+          <th>Email</th>
+          <th>Uprawnienia</th>
           <th>Narzędzia</th>
         </tr>
       </thead>
 
       <tbody>
-        <% @amenities.each do |amenity| %>
+        <% @admins.each do |admin| %>
           <tr>
-            <td><%= amenity.name %></td>
+            <td><%= admin.email %></td>
+            <td>
+              <% admin.amenities.as_json.each do |f| %>
+                  <%= f %> <br/>
+              <% end %>
+            </td>
             <td>
               <ul class="list-inline">
                 <li>
-                  <%= link_to amenity do %>
+                  <%= link_to admin do %>
                       <%= fa_icon 'eye', style: 'color: black' %> Podgląd
                   <% end %>
                 </li>
 
                 <li>
-                  <%= link_to edit_amenity_path amenity do %>
+                  <%= link_to edit_admin_path admin do %>
                       <%= fa_icon 'pencil', style: 'color: black' %> Edycja
                   <% end %>
                 </li>
 
                 <li>
-                  <%= link_to amenity, method: :delete, data: {confirm: 'Jesteś pewien?'} do %>
+                  <%= link_to admin, method: :delete, data: {confirm: 'Jesteś pewien?'} do %>
                       <%= fa_icon 'times', style: 'color: black' %> Usuń
                   <% end %>
                 </li>
               </ul>
             </td>
+
           </tr>
         <% end %>
       </tbody>
     </table>
-    <%= link_to new_amenity_path, class: 'btn btn-default' do %>
-        <%= fa_icon('plus') %>  Nowe Uprawnienie
+    <%= link_to new_admin_path, class: 'btn btn-default' do %>
+        <%= fa_icon('plus') %>  Nowy Administrator
     <% end %>
   </div>
 </div>

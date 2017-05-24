@@ -4,12 +4,12 @@
   <meta content='text/html; charset=UTF-8' http-equiv='Content-Type' />
 </head>
 <body>
-<h1>Welcome <%= @user.email %></h1>
+<h1>Witaj <%= @user.email %></h1>
 <p>
-  Status twojego zamowienia zostal zmieniony: <%= @stat %><br/>
+  Status twojego zamówienia nr.<%= @order_id %> został zmieniony na: <b><%= @stat %></b><br/>
 </p>
-<% if @dis %>
-  <p>Dodatkow informacje: <%= @info %></p>
+<% if !@info.blank? %>
+  <p><%= @info %></p>
 <% end %>
 </body>
 </html>
