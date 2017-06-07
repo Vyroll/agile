@@ -63,7 +63,12 @@ Shipping.create(name: 'Pocztex24', price: '24.0')
 Shipping.create(name: 'Kurier', price: '25.0')
 Shipping.create(name: 'Inpost', price: '15.0')
 
-Admin.create(password:'adminadmin',email:'admin@gmail.com')
+Amenity.create(name: 'Super Admin')
+Amenity.create(name: 'Kategorie')
+Amenity.create(name: 'Zamówienia')
+Amenity.create(name: 'Magazyn')
+
+Admin.create(password:'adminadmin',email:'admin@gmail.com', amenities: "['Super Admin']")
 User.create(password:'useruser',email:'user@gmail.com')
 User.create(password:'useruser',email:'user2@gmail.com')
 User.create(password:'useruser',email:'user3@gmail.com')

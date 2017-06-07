@@ -37,12 +37,12 @@
               </td>
 
               <td><%= product.stock %></td>
-              <td><%= sprintf "%0.02f", product.price %> zł</td>
+              <td><%= sprintf "%0.02f", product.price %>zł</td>
               <td>
-                <% if product.discount != 0 %>
+                <% if !product.discount.blank? %>
                     <div style="color: red"><%= product.discount %>%</div>
                 <% else %>
-                    <div><%= product.discount %>%</div>
+                    <div>0%</div>
                 <% end %>
               </td>
               <td>
